@@ -12,3 +12,28 @@ export function getUserFlipEventInfo(user_code){
 
     return axios.get(kUrl + "/api/event/flip/" + user_code);
 }
+
+export function createUserFlipEvent(user_code){
+
+    return axios.post(kUrl + "/api/event", {
+        type : "Flip",
+        user_code,
+    });
+}
+
+export function createUserFlipEventInfo(event_id){
+    //new Date().toISOString().substr(0, 10).replace('T', ' ');
+    return axios.post(kUrl + "/api/event/flip/" + event_id);
+}
+
+
+export function getKSTDate(){
+
+    let today = new Date();
+
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    let date = today.getDate();
+
+    return year + "-" + month + "-" + date;
+}
