@@ -30,10 +30,6 @@ export function createUserFlipEventInfo(event_id){
 export function getKSTDate(){
 
     let today = new Date();
+    return today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
-    let year = today.getFullYear();
-    let month = today.getMonth();
-    let date = today.getDate();
-
-    return year + "-" + month + "-" + date;
 }
