@@ -54,6 +54,8 @@ class MainContainer extends Component{
                 .then((result) => {
                     this.setUsersNewFlipEvent(result.data);
                 })
+            }else{
+
             }
         })
     }
@@ -77,7 +79,6 @@ class MainContainer extends Component{
     canEnjoyEvent(){
         let today = getKSTDate();
 
-        console.log(this.state);
         if(this.judgeTodayFirstEvent(today, this.state.start_date, this.state.end_date)){
             console.log("이벤트 처음함");
         }else if(this.judgeHasOnlyClick(today, this.state.start_date, this.state.end_date)){
@@ -89,7 +90,7 @@ class MainContainer extends Component{
 
     judgeTodayFirstEvent(today, start_date, end_date){
 
-        return (today > start_date) && (today > end_date)
+        return (today > start_date) && (today > end_date) && (start_date < end_date)
     }
 
     judgeHasOnlyClick(today, start_date, end_date){
