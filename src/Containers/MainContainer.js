@@ -13,7 +13,7 @@ class MainContainer extends Component{
             start_date : "",
             end_date : "",
             event_id : 0,
-            user_code : "123",
+            user_code : "",
         }
 
         this.setStatus = this.setStatus.bind(this);
@@ -26,8 +26,8 @@ class MainContainer extends Component{
         this.judgeHasOnlyClick = this.judgeHasOnlyClick.bind(this);
     }
 
-    componentDidMount(){
-        this.setState({user_code : '456'});
+    async componentDidMount(){
+        await this.setState({user_code : '456'});
         this.setStatus();
     }
 
@@ -40,6 +40,7 @@ class MainContainer extends Component{
 
     checkUserHasFlipEvent(result){
         if(result.data){
+
             this.setUsersFlipEvent(result.data);
         }else{
             this.createUserFirstFlibEvent();
@@ -79,6 +80,7 @@ class MainContainer extends Component{
     canEnjoyEvent(){
         let today = getKSTDate();
 
+
         if(this.judgeTodayFirstEvent(today, this.state.start_date, this.state.end_date)){
             console.log("이벤트 처음함");
         }else if(this.judgeHasOnlyClick(today, this.state.start_date, this.state.end_date)){
@@ -90,12 +92,12 @@ class MainContainer extends Component{
 
     judgeTodayFirstEvent(today, start_date, end_date){
 
-        return (today > start_date) && (today > end_date) && (start_date < end_date)
+        return (today > start_date) && (today > end_date) && (start_date <= end_date);
     }
 
     judgeHasOnlyClick(today, start_date, end_date){
 
-        return start_date > end_date
+        return start_date > end_date;
     }
 
     render(){
